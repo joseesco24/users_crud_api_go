@@ -4,8 +4,8 @@ var Config *config = &config{}
 
 type config struct {
 	ApiConfigs struct {
-		AppPort uint16 `env:"APP_PORT" validate:"numeric"`
-		AppMode string `env:"APP_MODE" validate:"alpha"`
+		AppMode string `env:"APP_MODE" envDefault:"development" validate:"alpha"`
+		AppPort uint16 `env:"APP_PORT" envDefault:"3064" validate:"numeric"`
 	}
 }
 
