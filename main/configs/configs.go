@@ -10,13 +10,9 @@ type config struct {
 }
 
 func (conf config) GetAppPort() uint16 {
-
 	return conf.ApiConfigs.AppPort
-
 }
 
 func (conf config) GetAppMode() string {
-
 	return conf.ApiConfigs.AppMode
-
 }
