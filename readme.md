@@ -1,6 +1,6 @@
 # V8 Users Api
 
-My first attempt to make a really fast users API based on Docker, Golang and GraphQL.
+My first attempt to make a really fast CRUD API based on Docker, Golang and GraphQL.
 
 ## Project commands
 
