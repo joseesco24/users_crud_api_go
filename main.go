@@ -14,7 +14,7 @@ import (
 
 func main() {
 
-	const envFilePath string = "../.env"
+	const envFilePath string = ".env"
 
 	var validate *validator.Validate
 	var app *fiber.App
