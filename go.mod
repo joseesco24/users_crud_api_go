@@ -1,4 +1,4 @@
-module github.com/joseesco24/v8_users_api/app
+module github.com/joseesco24/users_crud_api_go
 
 go 1.18
 

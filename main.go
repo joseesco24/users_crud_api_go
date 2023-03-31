@@ -7,8 +7,8 @@ import (
 	validator "github.com/go-playground/validator/v10"
 	fiber "github.com/gofiber/fiber/v2"
 	dotenv "github.com/joho/godotenv"
-	configs "github.com/joseesco24/v8_users_api/app/configs"
-	routers "github.com/joseesco24/v8_users_api/app/routers"
+	configs "github.com/joseesco24/users_crud_api_go/configs"
+	routers "github.com/joseesco24/users_crud_api_go/routers"
 	logging "github.com/sirupsen/logrus"
 )
 
