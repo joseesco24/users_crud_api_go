@@ -1,67 +1,97 @@
-# V8 Users Api
+# Users Crud Api Python
 
-My first attempt to make a really fast CRUD API based on Docker, Golang and GraphQL.
+A really simple CRUD GraphQL API based on Docker and Golang.
 
-## Project commands
+**Note:** In develop mode and running locally the docs are available at this [**url**](http://localhost:10050/graphql)
 
-**Note:** Before running any of these commands be sure to be inside the **main** directory of the repo.
+<br/>
 
-### Run On development Mode
+## Project Commands
 
-```bash
-APP_MODE=development go run app.go
-```
+**Note:** Before running any of these commands be sure that your **CWD** is **users_crud_api_go/src** directory.
 
-### Run On Testing Mode
+### Run App
 
 ```bash
-APP_MODE=testing go run app.go
+go run app.go
 ```
 
-### Run On Production Mode
+### Download Dependencies
 
 ```bash
-APP_MODE=production go run app.go
+go mod download
 ```
 
-### Docker Containerized App Building
-
-**Note:** Before running any of these commands be sure to be inside the **root** directory of the repo.
-
-#### Without Cache
+### Clean Unused Dependencies
 
 ```bash
-docker build --no-cache --tag v8_users_api:latest .
+go mod tidy
 ```
 
-#### With Cache
+### Update Dependencies
 
 ```bash
-docker build --tag v8_users_api:latest .
+go get -u
 ```
 
-### Docker Containerized App Deployment
+<br/>
 
-#### Without Detach
+## Docker Project Commands
+
+**Note:** Before running any of these commands be sure that your **CWD** is **users_crud_api_go** directory.
+
+### Docker Login Into Github Container Registry
 
 ```bash
-docker run --rm --name v8_users_api --publish 3064:3064 --env-file ./.env --env APP_PORT=3064 --env APP_MODE=production v8_users_api:latest
+docker login -u joseesco24 -p < authentication token > ghcr.io
 ```
 
-#### With Detach
+### Docker Push The Image To Github Container Registry
 
 ```bash
-docker run --detach --rm --name v8_users_api --publish 3064:3064 --env-file ./.env --env APP_PORT=3064 --env APP_MODE=production v8_users_api:latest
+docker push ghcr.io/joseesco24/users_crud_api_go:latest
 ```
 
-### Docker Access To The Container Terminal
+### Docker Pull The Image From Github Container Registry
 
 ```bash
-docker exec -it v8_users_api /bin/ash
+docker pull ghcr.io/joseesco24/users_crud_api_go:latest
 ```
 
-### Docker Killing Containerized App
+<br/>
+
+## Docker Compose Project Commands
+
+**Note:** Before running any of these commands be sure that your **CWD** is **users_crud_api_go** directory.
+
+### Docker Compose Build Image Using Compose File
 
 ```bash
-docker kill v8_users_api
+docker-compose -f compose.build.yaml build
 ```
+
+### Docker Compose Start Dbs Services Using Compose File
+
+```bash
+docker-compose -f compose.databases.yaml up
+```
+
+### Docker Compose Stop Dbs Services Using Compose File
+
+```bash
+docker-compose -f compose.databases.yaml down
+```
+
+### Docker Compose Start Project Using Compose File
+
+```bash
+docker-compose -f compose.project.yaml up
+```
+
+### Docker Compose Stop Project Using Compose File
+
+```bash
+docker-compose -f compose.project.yaml down
+```
+
+<br/>
