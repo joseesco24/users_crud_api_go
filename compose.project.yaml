@@ -1,0 +1,83 @@
+version: "3.8"
+
+services:
+  users_crud_api_go_app:
+    container_name: users_crud_api_go_app
+    image: ghcr.io/joseesco24/users_crud_api_go:latest
+    networks:
+      - dockerized_databases_network
+    environment:
+      APP_AUTHENTICATION_HANDLER_MIDDLEWARE_EXCLUDE: ${APP_AUTHENTICATION_HANDLER_MIDDLEWARE_EXCLUDE}
+      APP_USE_AUTHENTICATION_HANDLER_MIDDLEWARE: ${APP_USE_AUTHENTICATION_HANDLER_MIDDLEWARE}
+      APP_DATABASE_HEALTH_CHECK_MIDDLEWARE_EXCLUDE: ${APP_DATABASE_HEALTH_CHECK_MIDDLEWARE_EXCLUDE}
+      APP_USE_DATABASE_HEALTH_CHECK_MIDDLEWARE: ${APP_USE_DATABASE_HEALTH_CHECK_MIDDLEWARE}
+      APP_ENVIRONMENT_MODE: ${APP_ENVIRONMENT_MODE}
+      APP_LOGGING_MODE: ${APP_LOGGING_MODE}
+      APP_SERVER_PORT: ${APP_SERVER_PORT}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_HOST: "postgres_users_db"
+      DATABASE_LOGS: ${DATABASE_LOGS}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_PORT: 5432
+      CACHE_DATABASE_DEFAULT_TTL: ${CACHE_DATABASE_DEFAULT_TTL}
+      CACHE_DATABASE_PASSWORD: ${CACHE_DATABASE_PASSWORD}
+      CACHE_DATABASE_LOGS: ${CACHE_DATABASE_LOGS}
+      CACHE_DATABASE_NAME: ${CACHE_DATABASE_NAME}
+      CACHE_DATABASE_HOST: "redis_cache_db"
+      CACHE_DATABASE_PORT: 6378
+    ports:
+      - target: 10048
+        published: 10048
+        protocol: tcp
+    depends_on:
+      - postgres_users_db
+      - mongo_configs_db
+
+  postgres_users_db:
+    container_name: postgres_users_db
+    image: ghcr.io/joseesco24/postgres_users_db:latest
+    networks:
+      - dockerized_databases_network
+    ports:
+      - target: 5432
+        published: 5434
+        protocol: tcp
+    volumes:
+      - type: volume
+        source: postgres_users_db_disc
+        target: /var/lib/postgresql/data
+
+  mongo_configs_db:
+    container_name: mongo_configs_db
+    image: ghcr.io/joseesco24/mongo_configs_db:latest
+    networks:
+      - dockerized_databases_network
+    ports:
+      - target: 27017
+        published: 5440
+        protocol: tcp
+    volumes:
+      - type: volume
+        source: mongo_configs_db_disc
+        target: /data/db
+
+  redis_cache_db:
+    container_name: redis_cache_db
+    image: ghcr.io/joseesco24/redis_cache_db:latest
+    networks:
+      - dockerized_databases_network
+    ports:
+      - target: 6378
+        published: 5436
+        protocol: tcp
+
+networks:
+  dockerized_databases_network:
+    name: dockerized_databases_network
+    external: false
+    driver: bridge
+
+volumes:
+  postgres_users_db_disc:
+  mongo_configs_db_disc:
