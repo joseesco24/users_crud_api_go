@@ -13,7 +13,7 @@ A really simple CRUD GraphQL API based on Docker and Golang.
 ### Run App
 
 ```bash
-go run app.go
+go run main.go
 ```
 
 ### Download Dependencies
