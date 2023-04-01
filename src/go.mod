@@ -1,4 +1,4 @@
-module github.com/joseesco24/users_crud_api_go
+module github.com/joseesco24/users_crud_api_go/src
 
 go 1.18
 

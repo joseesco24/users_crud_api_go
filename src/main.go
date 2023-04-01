@@ -7,14 +7,14 @@ import (
 	validator "github.com/go-playground/validator/v10"
 	fiber "github.com/gofiber/fiber/v2"
 	dotenv "github.com/joho/godotenv"
-	configs "github.com/joseesco24/users_crud_api_go/configs"
-	routers "github.com/joseesco24/users_crud_api_go/routers"
+	configs "github.com/joseesco24/users_crud_api_go/src/configs"
+	routers "github.com/joseesco24/users_crud_api_go/src/routers"
 	logging "github.com/sirupsen/logrus"
 )
 
 func main() {
 
-	const envFilePath string = ".env"
+	const envFilePath string = "../.env"
 
 	var validate *validator.Validate
 	var app *fiber.App

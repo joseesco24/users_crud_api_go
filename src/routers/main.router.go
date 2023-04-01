@@ -5,7 +5,7 @@ import (
 
 	fgg "github.com/cckwes/fiber-graphql-go"
 	graphql "github.com/graph-gophers/graphql-go"
-	resolvers "github.com/joseesco24/users_crud_api_go/resolvers"
+	resolvers "github.com/joseesco24/users_crud_api_go/src/resolvers"
 	logging "github.com/sirupsen/logrus"
 )
 
